@@ -5,10 +5,13 @@ import (
 	"log"
 	"net/http"
 	"udemyApi/handler"
+
+	"github.com/gorilla/mux"
 )
 
 func StartServer() {
-	router := http.NewServeMux()
+	// router := http.NewServeMux()
+	router := mux.NewRouter()
 
 	fmt.Println("Server di 8082")
 
