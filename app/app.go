@@ -15,7 +15,9 @@ func StartServer() {
 
 	fmt.Println("Server di 8082")
 
-	router.HandleFunc("/home", handler.Home)
-	router.HandleFunc("/customer", handler.GetAllCustomer)
+	router.HandleFunc("/home", handler.Home).Methods(http.MethodGet)
+	router.HandleFunc("/customer", handler.GetAllCustomer).Methods(http.MethodGet)
+	router.HandleFunc("/customer", handler.CreateCustomer).Methods(http.MethodPost)
+	router.HandleFunc("/customer/{customers_id:[0-9]+}", handler.GetCustomer).Methods(http.MethodGet)
 	log.Fatal(http.ListenAndServe(":8082", router))
 }

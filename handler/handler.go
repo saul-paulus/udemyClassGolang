@@ -5,6 +5,8 @@ import (
 	"encoding/xml"
 	"fmt"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 type Customer struct {
@@ -33,4 +35,15 @@ func GetAllCustomer(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(customer)
 	}
+}
+
+// Mencari customer sesuai ID
+func GetCustomer(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	fmt.Fprint(w, vars["customers_id"])
+}
+
+// Membuat customer
+func CreateCustomer(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "permintaan post diterima")
 }
